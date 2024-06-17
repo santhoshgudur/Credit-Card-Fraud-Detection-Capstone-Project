@@ -76,9 +76,13 @@ The card_transactions table also needs to be updated with all the details along 
  
 The lookup table will contain the following details:
 •	Card id 
+
 •	Upper control limit (UCL) 
+
 •	Postcode of the last transaction 
+
 •	Transaction date of the last transaction
+
 •	The credit score of the member
 Now, let’s understand the various parameters defined by the rules required to determine the authenticity of transactions. Here are the three parameters that we will use to detect whether a transaction is fraudulent or not.
  
@@ -118,14 +122,22 @@ You will need to make sure that you have Hadoop, Sqoop, Hive, HBase and Spark in
 
 As part of the project, broadly, you are required to perform the following tasks:
 •	Task 1: Load the transactions history data (card_transactions.csv) in a NoSQL database.
+
 •	Task 2: Ingest the relevant data from AWS RDS to Hadoop.
+
 •	Task 3: Create a look-up table with columns specified earlier in the problem statement.
+
 •	Task 4: After creating the table, you need to load the relevant data in the lookup table.
+
 •	Task 5: Create a streaming data processing framework that ingests real-time POS transaction data from Kafka. The transaction data is then validated based on the three rules’ parameters (stored in the NoSQL database) discussed previously.
+
 •	Task 6: Update the transactions data along with the status (fraud/genuine) in the card_transactions table.
+
 •	Task 7: Store the ‘postcode’ and ‘transaction_dt’ of the current transaction in the look-up table in the NoSQL database if the transaction was classified as genuine.
 
 ## Validation
 1.	When you load the data of the past card transactions in the NoSQL database the count of the data should be 53,292. This will be same as the number of records present in the card_transactions.csv file.
+
 2.	When you run the sqoop jobs to import the data from AWS RDS it would retrieve 999 records.
+
 3.	When you classify all the incoming transactions as fraud or genuine and then update this in the card_transactions table, the final count of that table should be more than 59,000.
